@@ -1,3 +1,6 @@
 venv
+.idea
+
+
 secrets.py
 *.psd
