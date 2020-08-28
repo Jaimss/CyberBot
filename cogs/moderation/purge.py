@@ -1,3 +1,5 @@
+import asyncio
+
 from discord.ext import commands as com
 
 from util.checks import is_pinned
@@ -24,10 +26,16 @@ class Purge(com.Cog):
 
         if limit >= "1000":
             m = await warn_response(ctx.channel, f'You are about to clear {limit} messages !\n '
-                                             f'React ✅ to continue or ❌ to cancel!')
+                                                 f'React ✅ to continue or ❌ to cancel!')
             await m.add_reaction('✅')
             await m.add_reaction('❌')
-            rxn, _ = await self.bot.wait_fot('reaction_add', check=check_rxn)
+            try:
+                rxn, _ = await self.bot.wait_fot('reaction_add', timeout=60.0, check=check_rxn)
+            except asyncio.TimeoutError:
+                m = await error_response(ctx.channel, 'No reaction added!')
+                await asyncio.sleep(3)
+                await m.delete()
+                return
             if str(rxn.emoji) == "❌":
                 await quick_response(ctx.channel, 'Canceled Purge!')
                 return
