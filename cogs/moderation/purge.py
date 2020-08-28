@@ -30,7 +30,7 @@ class Purge(com.Cog):
             await m.add_reaction('✅')
             await m.add_reaction('❌')
             try:
-                rxn, _ = await self.bot.wait_fot('reaction_add', timeout=60.0, check=check_rxn)
+                rxn, _ = await self.bot.wait_for('reaction_add', timeout=60.0, check=check_rxn)
             except asyncio.TimeoutError:
                 m = await error_response(ctx.channel, 'No reaction added!')
                 await asyncio.sleep(3)
