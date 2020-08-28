@@ -9,7 +9,7 @@ class Say(com.Cog):
         self.bot = bot
 
     @com.command(name='say')
-    @com.has_permissions(manage_channels=True)
+    @com.has_permissions(manage_messages=True)
     async def say_command(self, ctx, *, args):
         # cleanup the message to say
         await ctx.message.delete()
