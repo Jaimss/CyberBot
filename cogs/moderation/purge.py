@@ -8,7 +8,6 @@ class Purge(com.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    # TODO: Warn for deleting whole channel.
     @com.command(name='purge')
     @com.has_permissions(manage_messages=True)
     async def purge_command(self, ctx, limit=None):
@@ -26,8 +25,8 @@ class Purge(com.Cog):
         if limit >= "1000":
             m = await warn_response(ctx.channel, f'You are about to clear {limit} messages !\n '
                                              f'React ✅ to continue or ❌ to cancel!')
-            m.add_reaction('✅')
-            m.add_reaction('❌')
+            await m.add_reaction('✅')
+            await m.add_reaction('❌')
             rxn, _ = await self.bot.wait_fot('reaction_add', check=check_rxn)
             if str(rxn.emoji) == "❌":
                 await quick_response(ctx.channel, 'Canceled Purge!')
