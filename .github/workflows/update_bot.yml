@@ -1,0 +1,20 @@
+name: Update the bot on push to master
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  login:
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd /home/james/discordbots/CyberBot/
+          git pull
+#          screen -S cyber -X stuff 'git pull\n'
