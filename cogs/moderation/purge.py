@@ -1,5 +1,4 @@
 from discord.ext import commands as com
-from discord import DMChannel
 
 from util.checks import is_pinned
 from util.util import (quick_response, error_response, warn_response)
@@ -24,8 +23,9 @@ class Purge(com.Cog):
             else:
                 return False
 
-        if limit == "50000":
-            await warn_response(ctx.channel, 'You are about to clear the channel!\nReact ✅ to continue or ❌ to cancel!')
+        if limit >= "1000":
+            await warn_response(ctx.channel, f'You are about to clear {limit} messages !\n '
+                                             f'React ✅ to continue or ❌ to cancel!')
             reaction, user = await self.bot.wait_fot('reaction_add', check=check_rxn)
             if str(reaction.emoji) == "❌":
                 await quick_response(ctx.channel, 'Canceled Purge!')
