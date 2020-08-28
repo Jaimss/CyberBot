@@ -15,7 +15,7 @@ class Say(com.Cog):
             embed=Embed(
                 description=args,
                 color=bot_color
-            ).set_footer(text=ctx.message.author.name, icon_url=ctx.message.author.avatar)
+            ).set_footer(text=ctx.message.author.name, icon_url=ctx.message.author.avatar_url)
         )
 
 
