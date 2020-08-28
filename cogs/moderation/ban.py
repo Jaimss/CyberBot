@@ -8,6 +8,7 @@ class Ban(com.Cog):
         self.bot = bot
 
     @com.command(name='ban')
+    @com.has_permissions(ban_members=True)
     async def ban_command(self, ctx, banned=None, *, reason=None):
         """Ban a user by ID"""
         guild = ctx.message.guild
@@ -25,6 +26,7 @@ class Ban(com.Cog):
         await quick_response(ctx.channel, f'Successfully banned `{banned.name}#{banned.discriminator}`!')
 
     @com.command(name='unban')
+    @com.has_permissions(ban_members=True)
     async def unban_command(self, ctx, banned=None, *, reason=None):
         """Unban a user by ID"""
         guild = ctx.message.guild

@@ -5,18 +5,21 @@ from secrets import token
 from util.cogUtil import load_all_cogs, reload_all_cogs
 from util.util import (quick_response, error_response)
 
-bot = commands.Bot('-')
+from util.checks import is_owner
+
+bot = commands.Bot('.')
 
 
 @bot.event
 async def on_ready():
     """On ready event to setup the bot"""
-    await bot.change_presence(activity=activity.Game(name="https://jaims.dev"))
+    await bot.change_presence(activity=activity.Game(name="Help: .help"))
 
     print('Online!')
 
 
 @bot.command()
+@commands.check(is_owner)
 async def load(ctx, extension: str):
     """Load command for cogs"""
     bot.load_extension(f'cogs.{extension}')
@@ -28,6 +31,7 @@ async def load(ctx, extension: str):
 
 
 @bot.command()
+@commands.check(is_owner)
 async def unload(ctx, extension: str):
     """Unload command for cogs"""
     bot.unload_extension(f'cogs.{extension}')
@@ -39,6 +43,7 @@ async def unload(ctx, extension: str):
 
 
 @bot.command()
+@commands.check(is_owner)
 async def reload(ctx, extension=None):
     """Reload command for cogs"""
     extensions_loaded = []
