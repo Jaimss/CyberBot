@@ -24,10 +24,12 @@ class Purge(com.Cog):
                 return False
 
         if limit >= "1000":
-            await warn_response(ctx.channel, f'You are about to clear {limit} messages !\n '
+            m = await warn_response(ctx.channel, f'You are about to clear {limit} messages !\n '
                                              f'React ✅ to continue or ❌ to cancel!')
-            reaction, user = await self.bot.wait_fot('reaction_add', check=check_rxn)
-            if str(reaction.emoji) == "❌":
+            m.add_reaction('✅')
+            m.add_reaction('❌')
+            rxn, _ = await self.bot.wait_fot('reaction_add', check=check_rxn)
+            if str(rxn.emoji) == "❌":
                 await quick_response(ctx.channel, 'Canceled Purge!')
                 return
 
