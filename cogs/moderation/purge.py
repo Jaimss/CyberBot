@@ -24,8 +24,12 @@ class Purge(com.Cog):
             else:
                 return False
 
-        if limit >= "1000":
-            m = await warn_response(ctx.channel, f'You are about to clear {limit} messages !\n '
+        if not limit.isdigit():
+            await error_response(ctx.channel, 'Please provide a valid integer!')
+            return
+
+        if int(limit) >= 1000:
+            m = await warn_response(ctx.channel, f'You are about to clear more than 1,000 messages!\n '
                                                  f'React ✅ to continue or ❌ to cancel!')
             await m.add_reaction('✅')
             await m.add_reaction('❌')
@@ -40,11 +44,6 @@ class Purge(com.Cog):
                 await quick_response(ctx.channel, 'Canceled Purge!')
                 return
 
-        if limit.isdigit():
-            messages = await ctx.channel.purge(limit=int(limit), check=is_pinned)
-            limit = len(messages)
-
-        else:
-            await error_response(ctx.channel, 'Please provide a valid integer!')
-            return
+        messages = await ctx.channel.purge(limit=int(limit), check=is_pinned)
+        limit = len(messages)
         await quick_response(ctx.channel, f'Successfully purged {limit} messages!')
