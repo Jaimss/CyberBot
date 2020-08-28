@@ -11,6 +11,8 @@ class Say(com.Cog):
     @com.command(name='say')
     @com.has_permissions(manage_channels=True)
     async def say_command(self, ctx, *, args):
+        # cleanup the message to say
+        await ctx.message.delete()
         await ctx.channel.send(
             embed=Embed(
                 description=args,
