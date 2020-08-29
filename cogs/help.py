@@ -37,7 +37,7 @@ class Help(com.Cog):
             value='» Check if the bot is on.',
             inline=False
         ).add_field(
-            name='.say [message]',
+            name='`.say [message]`',
             value='» Say a message in a channel. Requires permission to manage messages.',
             inline=False
         ).set_footer(text='Bot By: Jaims | https://jaims.dev')
