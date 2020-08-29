@@ -37,8 +37,8 @@ class Help(com.Cog):
             value='» Check if the bot is on.',
             inline=False
         ).add_field(
-            name='`.say [message]`',
-            value='» Say a message in a channel. Requires permission to manage messages.',
+            name='`.say [-p] [message]`',
+            value='» Say a message in a channel. If you include `-p` it will be plain text.',
             inline=False
         ).set_footer(text='Bot By: Jaims | https://jaims.dev')
         # moderation page

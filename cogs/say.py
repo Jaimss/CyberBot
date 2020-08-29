@@ -13,12 +13,15 @@ class Say(com.Cog):
     async def say_command(self, ctx, *, args):
         # cleanup the message to say
         await ctx.message.delete()
-        await ctx.channel.send(
-            embed=Embed(
-                description=args,
-                color=bot_color
-            ).set_footer(text=ctx.message.author.name, icon_url=ctx.message.author.avatar_url)
-        )
+        if args.startswith("-p"):
+            await ctx.channel.send(args[3:])
+        else:
+            await ctx.channel.send(
+                embed=Embed(
+                    description=args,
+                    color=bot_color
+                ).set_footer(text=ctx.message.author.name, icon_url=ctx.message.author.avatar_url)
+            )
 
 
 def setup(bot):
