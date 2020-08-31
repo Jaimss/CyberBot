@@ -44,6 +44,6 @@ class Purge(com.Cog):
                 await quick_response(ctx.channel, 'Canceled Purge!')
                 return
 
-        messages = await ctx.channel.purge(limit=int(limit), check=not is_pinned)
+        messages = await ctx.channel.purge(limit=int(limit), check=is_pinned)
         limit = len(messages)
         await quick_response(ctx.channel, f'Successfully purged {limit} messages!')
