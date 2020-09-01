@@ -46,4 +46,6 @@ class Purge(com.Cog):
 
         messages = await ctx.channel.purge(limit=int(limit), check=is_pinned)
         limit = len(messages)
-        await quick_response(ctx.channel, f'Successfully purged {limit} messages!')
+        m = await quick_response(ctx.channel, f'Successfully purged {limit} messages!')
+        await asyncio.sleep(3)
+        await m.delete()
