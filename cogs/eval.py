@@ -25,18 +25,28 @@ class EvalCommand(Cog):
             await ctx.message.channel.send(
                 embed=Embed(
                     title='Python Code Evaluation',
-                    description='The code you provided generated an exception!',
+                    description='Your code generated an exception!',
                     color=red_color
-                ).set_footer(text=f'Code By: {ctx.message.author.name}', icon_url=ctx.message.author.avatar_url)
+                ).set_footer(text=f'Code By: {ctx.message.author.name}', icon_url=ctx.message.author.avatar_url).add_field(
+                    name='Your Code:',
+                    value=f'```py\n{code}```'
+                )
             )
             return
 
         await ctx.message.channel.send(
             embed=Embed(
                 title='Python Code Evaluation',
-                description=f'Code:\n```py\n{code}```Response:\n```\n{redirected_out.getvalue()}```',
                 color=bot_color
-            ).set_footer(text=f'Code By: {ctx.message.author.name}', icon_url=ctx.message.author.avatar_url)
+            ).set_footer(text=f'Code By: {ctx.message.author.name}', icon_url=ctx.message.author.avatar_url).add_field(
+                inline=False,
+                name='Your Code:',
+                value=f'```py\n{code}```'
+            ).add_field(
+                inline=False,
+                name='Output:',
+                value=f'```\n{redirected_out.getvalue()}```'
+            )
         )
 
 
