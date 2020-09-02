@@ -9,6 +9,7 @@ def load_all_cogs(bot):
     bot.load_extension('cogs.ping')
     bot.load_extension('cogs.help')
     bot.load_extension('cogs.say')
+    bot.load_extension('cogs.eval')
 
 
 def reload_all_cogs(bot) -> list:
@@ -25,5 +26,7 @@ def reload_all_cogs(bot) -> list:
     all_cogs.append('Help')
     bot.reload_extension('cogs.say')
     all_cogs.append('Say')
+    bot.reload_extension('cogs.eval')
+    all_cogs.append('Eval')
 
     return all_cogs
