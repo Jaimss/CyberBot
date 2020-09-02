@@ -34,7 +34,7 @@ class EvalCommand(Cog):
         await ctx.message.channel.send(
             embed=Embed(
                 title='Python Code Evaluation',
-                description=f'Code: ```py\n{code}``` Response: ```\n{redirected_out.getvalue()}```',
+                description=f'Code:\n```py\n{code}```Response:\n```\n{redirected_out.getvalue()}```',
                 color=bot_color
             ).set_footer(text=f'Code By: {ctx.message.author.name}', icon_url=ctx.message.author.avatar_url)
         )
