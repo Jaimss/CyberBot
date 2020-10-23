@@ -14,13 +14,13 @@ bot = commands.Bot('.')
 async def on_ready():
     """On ready event to setup the bot"""
     await bot.change_presence(activity=activity.Game(name="Help: .help"))
-
+    
     print('Online!')
 
 
 @bot.command()
 @commands.check(is_owner)
-async def load(ctx, extension: str):
+async def load(ctx: discord.ext.context, extension: str):
     """Load command for cogs"""
     bot.load_extension(f'cogs.{extension}')
     try:
